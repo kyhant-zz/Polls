@@ -1,19 +1,29 @@
 var React = require('react');
 var io = require('socket.io-client');
-
+var Header = require('./parts/Header');
 
 var App = React.createClass({
+	getInitialState(){
+		return {
+			status: 'disconnected'
+		}
+	},
+
 	componentWillMount() {
 		this.socket = io('http://localhost:3000');
 		this.socket.on('connect', this.connect);
 	},
 
 	connect() {
-		alert("Connected: " + this.socket.id);
+		this.setState({status: 'connected'});
 	}, 
 
 	render() {
-		return (<h1>Hello World form React</h1>);
+		return (
+			<div>
+				<Header title="New Header" status={this.state.status} />
+			</div>
+		)
 	}
 });
 

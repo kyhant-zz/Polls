@@ -20434,9 +20434,16 @@
 
 	var React = __webpack_require__(1);
 	var io = __webpack_require__(158);
+	var Header = __webpack_require__(205);
 
 	var App = React.createClass({
 		displayName: 'App',
+
+		getInitialState: function getInitialState() {
+			return {
+				status: 'disconnected'
+			};
+		},
 
 		componentWillMount: function componentWillMount() {
 			this.socket = io('http://localhost:3000');
@@ -20444,14 +20451,14 @@
 		},
 
 		connect: function connect() {
-			alert("Connected: " + this.socket.id);
+			this.setState({ status: 'connected' });
 		},
 
 		render: function render() {
 			return React.createElement(
-				'h1',
+				'div',
 				null,
-				'Hello World form React'
+				React.createElement(Header, { title: "New Header", status: this.state.status })
 			);
 		}
 	});
@@ -27912,6 +27919,51 @@
 	};
 
 
+
+/***/ },
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Header = React.createClass({
+		displayName: 'Header',
+
+		propTypes: {
+			title: React.PropTypes.string.isRequired
+		},
+
+		getDefaultProps: function getDefaultProps() {
+			return {
+				status: 'disconnected'
+			};
+		},
+
+		render: function render() {
+			return React.createElement(
+				'header',
+				{ className: "row" },
+				React.createElement(
+					'div',
+					{ className: "col-xs-10" },
+					React.createElement(
+						'h1',
+						null,
+						this.props.title
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: "col-xs-2" },
+					React.createElement('span', { id: "connection-status", className: this.props.status })
+				)
+			);
+		}
+	});
+
+	module.exports = Header;
 
 /***/ }
 /******/ ]);
