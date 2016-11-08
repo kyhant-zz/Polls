@@ -12,6 +12,7 @@ var App = React.createClass({
             status: 'disconnected',
             title: '',
             member: {},
+            speaker: {},
             audience: []
         }
     },
