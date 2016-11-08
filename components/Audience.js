@@ -1,8 +1,17 @@
 var React = require('react');
+var Display = require('./parts/Display');
+var Join = require('./parts/Join');
 
 var Audience = React.createClass({
 	render() {
-		return (<h1>Audience : {this.props.title}</h1>);
+		return (
+			<div>
+				<Display if={this.props.status === 'connected'}>
+					<h1>Join the session</h1>
+					<Join />
+				</Display>
+			</div>
+		);
 	}
 });
 

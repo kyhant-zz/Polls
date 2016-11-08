@@ -54,9 +54,9 @@
 
 	var App = __webpack_require__(196);
 	var Audience = __webpack_require__(250);
-	var Speaker = __webpack_require__(251);
-	var Board = __webpack_require__(252);
-	var Whoops404 = __webpack_require__(253);
+	var Speaker = __webpack_require__(253);
+	var Board = __webpack_require__(254);
+	var Whoops404 = __webpack_require__(255);
 
 	var routes = React.createElement(
 		Route,
@@ -30878,16 +30878,26 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
+	var Display = __webpack_require__(251);
+	var Join = __webpack_require__(252);
 
 	var Audience = React.createClass({
 		displayName: 'Audience',
 
 		render: function render() {
 			return React.createElement(
-				'h1',
+				'div',
 				null,
-				'Audience : ',
-				this.props.title
+				React.createElement(
+					Display,
+					{ 'if': this.props.status === 'connected' },
+					React.createElement(
+						'h1',
+						null,
+						'Join the session'
+					),
+					React.createElement(Join, null)
+				)
 			);
 		}
 	});
@@ -30896,6 +30906,68 @@
 
 /***/ },
 /* 251 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Display = React.createClass({
+		displayName: 'Display',
+
+		render: function render() {
+			return this.props['if'] ? React.createElement(
+				'div',
+				null,
+				this.props.children
+			) : null;
+		}
+	});
+
+	module.exports = Display;
+
+/***/ },
+/* 252 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Join = React.createClass({
+		displayName: "Join",
+
+		join: function join() {
+			var memberName = React.findDOMNode(this.refs.name).value;
+			alert("TODO: Join member " + memberName);
+		},
+
+		render: function render() {
+			return React.createElement(
+				"form",
+				{ action: "javascript:void(0)", onSubmit: this.join },
+				React.createElement(
+					"label",
+					null,
+					"Full Name"
+				),
+				React.createElement("input", { ref: "name",
+					className: "form-control",
+					placeholder: "enter your full name...",
+					required: true }),
+				React.createElement(
+					"button",
+					{ className: "btn btn-primary" },
+					"Join"
+				)
+			);
+		}
+	});
+
+	module.exports = Join;
+
+/***/ },
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30918,7 +30990,7 @@
 	module.exports = Speaker;
 
 /***/ },
-/* 252 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30942,7 +31014,7 @@
 	module.exports = Board;
 
 /***/ },
-/* 253 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
