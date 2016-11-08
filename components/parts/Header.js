@@ -12,7 +12,7 @@ var Header = React.createClass({
 		}
 	},
 
-	render(){
+	render() {
 		return (
 			<header className="row">
 				<div className="col-xs-10">
@@ -22,8 +22,9 @@ var Header = React.createClass({
 					<span id="connection-status" className={this.props.status}></span>
 				</div>
 			</header>
-		)
+		);
 	}
-})
+
+});
 
 module.exports = Header;
