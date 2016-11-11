@@ -14,7 +14,8 @@ var App = React.createClass({
             member: {},
             audience: [],
             questions: [],
-            speaker: ''
+            speaker: '',
+            currentQuestion: false
         }
     },
 
@@ -27,6 +28,7 @@ var App = React.createClass({
         this.socket.on('audience', this.updateAudience);
         this.socket.on('start', this.start);
         this.socket.on('end', this.updateState);
+        this.socket.on('ask', this.ask);
     },
 
     emit(eventName, payload){
@@ -72,6 +74,10 @@ var App = React.createClass({
             sessionStorage.title = presentation.title;
         }
         this.setState(presentation);
+    },
+
+    ask(question){
+        this.setState({currentQuestion: question});
     },
 
     render() {
