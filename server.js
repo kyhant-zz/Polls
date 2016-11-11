@@ -22,6 +22,11 @@ io.sockets.on('connection', function (socket) {
 			audience.splice(audience.indexOf(member), 1);
 			io.sockets.emit('audience', audience);
 			console.log('Left: %s (%s audience members)', member.name);
+		} else if (this.id === speaker.id) {
+			console.log("%s has left. '%s' is over.", speaker.name, title);
+			speaker = {};
+			title = "Untitled Presentation";
+			io.sockets.emit('end', { title: title, speaker:'' });
 		}
 
 		connections.splice(connections.indexOf(socket), 1);
