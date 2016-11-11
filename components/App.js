@@ -13,6 +13,7 @@ var App = React.createClass({
             title: '',
             member: {},
             audience: [],
+            questions: [],
             speaker: ''
         }
     },
