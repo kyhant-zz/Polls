@@ -16,7 +16,6 @@ var JoinSpeaker = React.createClass({
 							 className="form-control"
 							 placeholder="enter your full name..."
 							 required />
-				<button className="btn btn-primary">Join</button>
 
 				<label>Presentation Title</label>
 				<input ref="title"
@@ -26,7 +25,7 @@ var JoinSpeaker = React.createClass({
 				<button className="btn btn-primary">Join</button>
 
 			</form>
-		)
+		);
 	}
 });
 

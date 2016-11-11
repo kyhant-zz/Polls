@@ -12,8 +12,8 @@ var App = React.createClass({
             status: 'disconnected',
             title: '',
             member: {},
-            speaker: '',
-            audience: []
+            audience: [],
+            speaker: ''
         }
     },
 
@@ -46,7 +46,7 @@ var App = React.createClass({
     },
 
     updateState(serverState) {
-        this.setState({title: serverState.title})
+        console.log(serverState);
         this.setState(serverState);
     },
 
@@ -63,7 +63,7 @@ var App = React.createClass({
         return (
             <div>
                 <Header {...this.state} />
-                <RouteHandler audience={this.state.audience} member={this.state.member} emit={this.emit} title={this.state.title} status={this.state.status} />
+                <RouteHandler  emit={this.emit} {...this.state} />
             </div>
         );
     }

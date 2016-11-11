@@ -23563,6 +23563,8 @@
 
 	'use strict';
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var React = __webpack_require__(1);
 	var Router = __webpack_require__(157);
 	var RouteHandler = Router.RouteHandler;
@@ -23578,8 +23580,8 @@
 	            status: 'disconnected',
 	            title: '',
 	            member: {},
-	            speaker: '',
-	            audience: []
+	            audience: [],
+	            speaker: ''
 	        };
 	    },
 
@@ -23612,6 +23614,7 @@
 	    },
 
 	    updateState: function updateState(serverState) {
+	        console.log(serverState);
 	        this.setState(serverState);
 	    },
 
@@ -23629,7 +23632,7 @@
 	            'div',
 	            null,
 	            React.createElement(Header, this.state),
-	            React.createElement(RouteHandler, { audience: this.state.audience, member: this.state.member, emit: this.emit, title: this.state.title, status: this.state.status })
+	            React.createElement(RouteHandler, _extends({ emit: this.emit }, this.state))
 	        );
 	    }
 
@@ -31102,11 +31105,6 @@
 					className: "form-control",
 					placeholder: "enter your full name...",
 					required: true }),
-				React.createElement(
-					'button',
-					{ className: "btn btn-primary" },
-					'Join'
-				),
 				React.createElement(
 					'label',
 					null,
